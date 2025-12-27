@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Aniversário, Meu Amor 💖</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #ffd6e8, #ffffff);
+  color: #333;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* FUNDO COM CORAÇÕES */
+.hearts {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.heart-bg {
+  position: absolute;
+  animation: float 14s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-10vh);
+    opacity: 1;
+  }
+}
+
+/* HEADER */
+header {
+  padding: 60px 20px;
+}
+
+h1 {
+  font-size: 2.8rem;
+  color: #d63384;
+}
+
+.subtitle {
+  margin-top: 15px;
+  font-size: 1.2rem;
+}
+
+.heart {
+  font-size: 2.5rem;
+  margin-top: 20px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+section {
+  padding: 60px 20px;
+}
+
+.box {
+  background: white;
+  max-width: 900px;
+  margin: auto;
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* FRASE DIGITANDO */
+.typing {
+  font-size: 1.4rem;
+  font-style: italic;
+  min-height: 70px;
+  color: #d63384;
+}
+
+/* CONTADOR */
+.counter {
+  font-size: 1.5rem;
+  color: #d63384;
+  margin-top: 20px;
+}
+
+/* GALERIA */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* CARROSSEL ANIME */
+.anime-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.anime-content {
+  max-width: 400px;
+}
+
+.anime-content img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.anime-quote {
+  margin-top: 15px;
+  font-style: italic;
+  color: #d63384;
+}
+
+.arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.arrow img {
+  width: 55px;
+  height: 55px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.arrow:hover img {
+  transform: scale(1.15);
+  opacity: 0.85;
+}
+
+/* PLAYER DE MÚSICA */
+.music-player {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin: 70px 0 30px;
+}
+
+/* BOTÃO SURPRESA */
+.surprise-container {
+  text-align: center;
+  margin: 80px 0 40px;
+}
+
+.surprise-container button {
+  background: #d63384;
+  color: white;
+  border: none;
+  padding: 18px 40px;
+  border-radius: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  animation: surprisePulse 1.6s infinite;
+}
+
+@keyframes surprisePulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(214,51,132,0.6); }
+  50% { transform: scale(1.1); box-shadow: 0 0 25px rgba(214,51,132,0.8); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(214,51,132,0.6); }
+}
+
+.surprise-container button:hover {
+  background: #b52b6f;
+}
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 40px;
+  border-radius: 25px;
+  max-width: 600px;
+}
+
+/* FOOTER */
+footer {
+  background: #d63384;
+  color: white;
+  padding: 40px 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<audio id="bgMusic"></audio>
+
+<header>
+  <h1>Feliz Aniversário, Meu Amor 💕</h1>
+  <p class="subtitle">Esse site é só uma pequena parte do que eu sinto por você</p>
+  <div class="heart">💖</div>
+</header>
+
+<section>
+  <div class="box">
+    <p class="typing" id="typing"></p>
+  </div>
+</section>
+
+<section>
+  <div class="box">
+    <h2>Estamos juntos há 💑</h2>
+    <p class="counter" id="counter"></p>
+  </div>
+</section>
+
+<section>
+  <div class="box">
+    <h2>Nossos Momentos 📸</h2>
+    <div class="gallery">
+      <img src="fotos/foto1.jpg">
+      <img src="fotos/foto2.jpg">
+      <img src="fotos/foto3.jpg">
+      <img src="fotos/foto4.jpg">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="box">
+    <h2>Frases que lembram você 💌</h2>
+
+    <div class="anime-carousel">
+      <button class="arrow" onclick="prevAnime()">
+        <img src="setas/esquerda.png">
+      </button>
+
+      <div class="anime-content">
+        <img id="animeImg">
+        <p class="anime-quote" id="animeQuote"></p>
+        <small id="animeAuthor"></small>
+      </div>
+
+      <button class="arrow" onclick="nextAnime()">
+        <img src="setas/direita.png">
+      </button>
+    </div>
+  </div>
+</section>
+
+<div class="music-player">
+  <button class="arrow" onclick="prevMusic()">
+    <img src="setas/esquerda.png">
+  </button>
+
+  <button class="arrow" onclick="togglePlay()">
+    <img id="playIcon" src="setas/play.png">
+  </button>
+
+  <button class="arrow" onclick="nextMusic()">
+    <img src="setas/direita.png">
+  </button>
+</div>
+
+<div class="surprise-container">
+  <button onclick="openModal()">Clique aqui 💖</button>
+</div>
+
+<footer>
+  <p>Eu te amo, hoje e sempre ❤️</p>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h2>Surpresa 💕</h2>
+    <p>Não importa quantos anos passem, eu escolho você todos os dias.</p>
+    <button onclick="closeModal()">Fechar</button>
+  </div>
+</div>
+
+<script>
+/* FRASES DIGITANDO */
+const phrases = [
+  "Cada dia ao seu lado é uma lembrança que eu quero guardar pra sempre.",
+  "Desde que você chegou, tudo ficou mais leve.",
+  "Amar você é a melhor parte dos meus dias.",
+  "Com você, tudo faz sentido."
+];
+
+let phraseIndex = 0;
+let charIndex = 0;
+const typingEl = document.getElementById("typing");
+
+function typePhrase() {
+  if (charIndex < phrases[phraseIndex].length) {
+    typingEl.innerHTML += phrases[phraseIndex].charAt(charIndex++);
+    setTimeout(typePhrase, 50);
+  } else {
+    setTimeout(erasePhrase, 7000);
+  }
+}
+
+function erasePhrase() {
+  if (charIndex > 0) {
+    typingEl.innerHTML = phrases[phraseIndex].substring(0, --charIndex);
+    setTimeout(erasePhrase, 30);
+  } else {
+    phraseIndex = (phraseIndex + 1) % phrases.length;
+    setTimeout(typePhrase, 500);
+  }
+}
+typePhrase();
+
+/* CONTADOR */
+const startDate = new Date("2022-06-10");
+(function counter(){
+  const now = new Date();
+  const days = Math.floor((now - startDate)/(1000*60*60*24));
+  document.getElementById("counter").innerHTML = `${days} dias de amor 💕`;
+})();
+
+/* MODAL */
+function openModal(){ document.getElementById("modal").style.display="flex"; }
+function closeModal(){ document.getElementById("modal").style.display="none"; }
+
+/* CARROSSEL ANIME */
+const animeData = [
+  { img:"anime/anime1.jpg", quote:"Mesmo que este mundo desapareça, eu nunca vou esquecer você.", author:"— Kirito" },
+  { img:"anime/anime2.jpg", quote:"Eu quero ser alguém em quem você possa confiar.", author:"— Subaru" },
+  { img:"anime/anime3.jpg", quote:"Eu quero viver ao seu lado.", author:"— Kaneki" },
+  { img:"anime/anime4.jpg", quote:"Eu te amo! Eu não quero te perder.", author:"— Okarun & Ayase" }
+];
+
+let animeIndex = 0;
+const animeImg = document.getElementById("animeImg");
+const animeQuote = document.getElementById("animeQuote");
+const animeAuthor = document.getElementById("animeAuthor");
+
+function updateAnime(){
+  animeImg.src = animeData[animeIndex].img;
+  animeQuote.innerText = animeData[animeIndex].quote;
+  animeAuthor.innerText = animeData[animeIndex].author;
+}
+
+function nextAnime(){
+  animeIndex = (animeIndex + 1) % animeData.length;
+  updateAnime();
+}
+
+function prevAnime(){
+  animeIndex = (animeIndex - 1 + animeData.length) % animeData.length;
+  updateAnime();
+}
+updateAnime();
+
+/* PLAYER DE MÚSICA */
+const musicList = [
+  "music/musica1.mp3",
+  "music/musica2.mp3",
+  "music/musica3.mp3",
+  "music/musica4.mp3",
+  "music/musica5.mp3"
+];
+
+let currentMusic = 0;
+let isPlaying = false;
+
+const audio = document.getElementById("bgMusic");
+const playIcon = document.getElementById("playIcon");
+
+audio.src = musicList[currentMusic];
+
+function togglePlay() {
+  if (isPlaying) {
+    audio.pause();
+    playIcon.style.opacity = "0.6";
+  } else {
+    audio.play();
+    playIcon.style.opacity = "1";
+  }
+  isPlaying = !isPlaying;
+}
+
+function nextMusic() {
+  audio.pause();
+  currentMusic = (currentMusic + 1) % musicList.length;
+  audio.src = musicList[currentMusic];
+  audio.play();
+  isPlaying = true;
+}
+
+function prevMusic() {
+  audio.pause();
+  currentMusic = (currentMusic - 1 + musicList.length) % musicList.length;
+  audio.src = musicList[currentMusic];
+  audio.play();
+  isPlaying = true;
+}
+
+/* CORAÇÕES */
+const hearts = document.getElementById("hearts");
+const heartTypes = ["❤️","💖","💘","💕","💗"];
+
+for(let i=0;i<70;i++){
+  const h=document.createElement("div");
+  h.className="heart-bg";
+  h.innerHTML=heartTypes[Math.floor(Math.random()*heartTypes.length)];
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(16+Math.random()*28)+"px";
+  h.style.animationDuration=(10+Math.random()*10)+"s";
+  hearts.appendChild(h);
+}
+</script>
+
+</body>
+</html>
